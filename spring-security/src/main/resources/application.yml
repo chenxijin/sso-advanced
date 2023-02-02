@@ -5,7 +5,7 @@ spring:
   datasource:
     username: root
     password: mysql1sGreat
-    url: jdbc:mysql://152.168.170.220:3306/sa-token?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=GMT%2B8&zeroDateTimeBehavior=CONVERT_TO_NULL
+    url: jdbc:mysql://152.168.170.220:3306/security?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=GMT%2B8&zeroDateTimeBehavior=CONVERT_TO_NULL
   liquibase:
     change-log: classpath:liquibase/master.xml
     enabled: false
@@ -14,3 +14,21 @@ spring:
     port: 6379
     password: ido85redis
     database: 31
+
+mybatis-plus:
+  type-aliases-package: com.sml.springsecurity.mapper.entity
+  global-config:
+    banner: false
+    db-config:
+      logic-delete-field: deleted
+      where-strategy: not_empty
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+    #不加这个查询数据为空时，字段将被隐藏
+    call-setters-on-nulls: true
+    jdbc-type-for-null: null
+  mapper-locations: classpath:mapper/*Mapper.xml
+
+logging:
+  config: classpath:config/logback.xml

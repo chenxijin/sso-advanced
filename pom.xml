@@ -12,6 +12,7 @@
         <module>sa-token</module>
         <module>spring-security</module>
         <module>keycloak</module>
+        <module>sso-common</module>
     </modules>
 
     <name>sso-advanced</name>
@@ -27,6 +28,7 @@
         <mybatis-plus.version>3.4.3.4</mybatis-plus.version>
         <hutool-all.version>5.8.11</hutool-all.version>
         <mysql-connector.version>8.0.28</mysql-connector.version>
+        <jsonwebtoken.version>0.9.0</jsonwebtoken.version>
     </properties>
 
 </project>

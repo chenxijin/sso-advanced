@@ -1,4 +1,4 @@
-package com.sml.springsecurity.platform.utils;
+package com.sml.platform.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;

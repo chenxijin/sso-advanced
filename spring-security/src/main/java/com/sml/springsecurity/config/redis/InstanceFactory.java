@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sml.springsecurity.platform.spring;
+package com.sml.springsecurity.config.redis;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
