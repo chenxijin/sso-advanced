@@ -11,6 +11,7 @@
     <modules>
         <module>sa-token</module>
         <module>spring-security</module>
+        <module>keycloak</module>
     </modules>
 
     <name>sso-advanced</name>
