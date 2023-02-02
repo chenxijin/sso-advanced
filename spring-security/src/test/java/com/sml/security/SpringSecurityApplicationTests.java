@@ -1,7 +1,6 @@
-package com.sml.springsecurity;
+package com.sml.security;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 //@SpringBootTest
 class SpringSecurityApplicationTests {

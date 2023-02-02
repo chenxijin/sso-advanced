@@ -1,7 +1,7 @@
 /**
  * Copyright &copy; 2012-2014 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.sml.springsecurity.config.redis;
+package com.sml.security.config.redis;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
