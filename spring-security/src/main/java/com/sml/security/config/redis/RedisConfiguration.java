@@ -4,15 +4,12 @@
  */
 package com.sml.security.config.redis;
 
-import com.sml.security.handler.RedisStoreTokenLogoutHandler;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-import org.springframework.security.oauth2.provider.token.TokenStore;
 
 
 @Configuration
@@ -38,7 +35,4 @@ public class RedisConfiguration {
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }
-
-
-
 }

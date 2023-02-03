@@ -348,7 +348,7 @@ public class RedisUtils {
 	 * 根据key集合清空redis值
 	 * @param keyList
 	 */
-	public static void clearRedisList(List<String> keyList) {
+	public static void clearRedisList(Iterable<String> keyList) {
 		for (String key : keyList) {
 			if (redisTemplateForObject.hasKey(key)) {
 				redisTemplateForObject.delete(key);

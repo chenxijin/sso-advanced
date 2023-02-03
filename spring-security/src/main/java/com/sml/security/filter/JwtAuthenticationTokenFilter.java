@@ -6,7 +6,6 @@ import com.sml.platform.utils.JwtUtil;
 import com.sml.security.config.redis.RedisUtils;
 import com.sml.security.mapper.entity.User;
 import io.jsonwebtoken.Claims;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -31,6 +30,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         }
         String userid;
         try {
+
             Claims claims = JwtUtil.parseJWT(token);
             userid = claims.getSubject();
         } catch (Exception e) {
