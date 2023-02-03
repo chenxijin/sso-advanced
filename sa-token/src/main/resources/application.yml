@@ -5,8 +5,8 @@ server:
 spring:
   datasource:
     username: root
-    password: mysql1sGreat
-    url: jdbc:mysql://152.168.170.220:3306/sa-token?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=GMT%2B8&zeroDateTimeBehavior=CONVERT_TO_NULL
+    password: jinitaimei
+    url: jdbc:mysql://127.0.0.1:3306/sa-token?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=GMT%2B8&zeroDateTimeBehavior=CONVERT_TO_NULL
   liquibase:
     change-log: classpath:liquibase/master.xml
     enabled: true

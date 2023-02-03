@@ -6,15 +6,15 @@ spring:
     allow-circular-references: true
   datasource:
     username: root
-    password: mysql1sGreat
-    url: jdbc:mysql://152.168.170.220:3306/security?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=GMT%2B8&zeroDateTimeBehavior=CONVERT_TO_NULL
+    password: jinitaimei
+    url: jdbc:mysql://127.0.0.1:3306/security?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=GMT%2B8&zeroDateTimeBehavior=CONVERT_TO_NULL
   liquibase:
     change-log: classpath:liquibase/master.xml
     enabled: true
   redis:
-    host: 152.168.170.211
+    host: 127.0.0.1
     port: 6379
-    password: ido85redis
+    password: jinitaimei
     database: 31
 
 mybatis-plus:
