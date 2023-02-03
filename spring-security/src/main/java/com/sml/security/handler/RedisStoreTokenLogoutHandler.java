@@ -1,8 +1,8 @@
 package com.sml.security.handler;
 
-import cn.hutool.json.JSON;
 import cn.hutool.json.JSONUtil;
 import com.sml.security.config.oauth2.OAuth2TokenAuthentication;
+import com.sml.security.mapper.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.Authentication;
@@ -21,8 +21,6 @@ import java.util.stream.Collectors;
 @Slf4j
 public class RedisStoreTokenLogoutHandler implements LogoutHandler {
 
-    private static final String UNAME_TO_ACCESS = "uname_to_access:";
-
     private final String tokenStorePrefix;
 
     private final RedisTemplate<String, Object> beanRedisTemplate;
@@ -37,13 +35,13 @@ public class RedisStoreTokenLogoutHandler implements LogoutHandler {
 
     @Override
     public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
-        if (authentication == null) {
+        if (Objects.isNull(authentication)) {
             return;
         }
 
-        String username = authentication.getName();
+        User user = (User) authentication.getPrincipal();
 
-        String pattern = tokenStorePrefix + ":" + UNAME_TO_ACCESS + "*" + username;
+        String pattern = tokenStorePrefix + ":" + user.getId() + "*";
         Set<String> keys = beanRedisTemplate.keys(pattern);
 
         if (log.isDebugEnabled()) {
@@ -59,7 +57,7 @@ public class RedisStoreTokenLogoutHandler implements LogoutHandler {
 
         groupMap.get(authentication).forEach(auth -> {
             OAuth2AccessToken accessToken = auth.getToken();
-            if (accessToken.getRefreshToken() != null) {
+            if (Objects.nonNull(accessToken.getRefreshToken())) {
                 tokenStore.removeRefreshToken(accessToken.getRefreshToken());
             }
             tokenStore.removeAccessToken(accessToken);

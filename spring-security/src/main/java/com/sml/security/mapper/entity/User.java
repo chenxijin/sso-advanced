@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sml.platform.base.BaseEntity;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,6 +17,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Data
@@ -29,7 +31,7 @@ public class User extends BaseEntity implements UserDetails {
      * 账户
      */
     @NotBlank
-    private String account;
+    private String username;
 
     /**
      * 密码
@@ -66,9 +68,11 @@ public class User extends BaseEntity implements UserDetails {
     private Boolean enable;
 
 
-    private List<String> permissions;
+    @TableField(exist = false)
+    private Set<String> permissions;
 
     //存储SpringSecurity所需要的权限信息的集合
+    @TableField(exist = false)
     private transient List<GrantedAuthority> authorities;
 
     @Override
@@ -79,7 +83,7 @@ public class User extends BaseEntity implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.getAccount();
+        return this.username;
     }
 
     @Override

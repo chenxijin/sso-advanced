@@ -2,6 +2,8 @@ server:
   port: 8999
 
 spring:
+  main:
+    allow-circular-references: true
   datasource:
     username: root
     password: mysql1sGreat

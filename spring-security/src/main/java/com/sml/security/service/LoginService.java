@@ -23,7 +23,7 @@ public class LoginService {
 
     public Map login(User in) {
         Authentication authenticate = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(in.getAccount(), in.getPassword())
+                new UsernamePasswordAuthenticationToken(in.getUsername(), in.getPassword())
         );
         Assert.notNull(authenticate, "用户名或密码错误");
 

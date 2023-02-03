@@ -40,9 +40,5 @@ public class RedisConfiguration {
     }
 
 
-    @Bean
-    public RedisStoreTokenLogoutHandler storeTokenLogoutHandler(RedisTemplate<String, Object> beanRedisTemplate,
-                                                                     TokenStore tokenStore) {
-        return new RedisStoreTokenLogoutHandler("login", beanRedisTemplate, tokenStore);
-    }
+
 }

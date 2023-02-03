@@ -6,6 +6,7 @@ import com.sml.platform.utils.JwtUtil;
 import com.sml.security.config.redis.RedisUtils;
 import com.sml.security.mapper.entity.User;
 import io.jsonwebtoken.Claims;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -23,14 +24,11 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        //获取token
         String token = request.getHeader("token");
         if (!StringUtils.hasText(token)) {
-            //放行
             filterChain.doFilter(request, response);
             return;
         }
-        //解析token
         String userid;
         try {
             Claims claims = JwtUtil.parseJWT(token);
@@ -39,18 +37,15 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             e.printStackTrace();
             throw new RuntimeException("token非法");
         }
-        //从redis中获取用户信息
         String redisKey = "login:" + userid;
         User user = JSONUtil.toBean(RedisUtils.get(redisKey), User.class);
 
         Assert.notNull(user, "用户未登录");
 
-        //存入SecurityContextHolder
-        //TODO 获取权限信息封装到Authentication中
         UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(user,null,null);
+                new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-        //放行
+
         filterChain.doFilter(request, response);
     }
 }
